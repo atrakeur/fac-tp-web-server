@@ -27,8 +27,8 @@ public class CVControler {
 
     /**
      * renvoie un flux XML d ́ecrivant le CV d’idenditifiant id.
-     * @param id de la personne recherchée
-     * @return le cv de la personne dont l'id est entré en paramètre
+     * @param id de la personne recherchee
+     * @return le cv de la personne dont l'id est entre en parametre
      */
     @RequestMapping(value="{id}", method = RequestMethod.GET)
     public @ResponseBody
@@ -45,7 +45,7 @@ public class CVControler {
     }
 
     /**
-     * reçcoit un flux XML décrivant un CV, créé l'objet correspondant et retourne son nouvel identifiant au format XML
+     * reçcoit un flux XML decrivant un CV, cree l'objet correspondant et retourne son nouvel identifiant au format XML
      * @param cv
      * @return
      */
