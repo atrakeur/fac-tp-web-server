@@ -5,15 +5,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import urouen.dao.CVRepository;
 import urouen.model.CV;
-import urouen.model.CVEntry;
 import urouen.model.CVList;
 
 @Controller
 @RequestMapping("/resume")
 public class CVControler {
 
-    public CVList cvList = new CVList();
+    CVRepository repository = new CVRepository();
 
     /**
      * renvoie un flux XML contenant la liste des CV
@@ -22,7 +22,7 @@ public class CVControler {
     @RequestMapping(value="", method = RequestMethod.GET)
     public @ResponseBody
     CVList getAllCV() {
-        return cvList;
+        return repository.getAll();
     }
 
     /**
@@ -32,31 +32,22 @@ public class CVControler {
      */
     @RequestMapping(value="{id}", method = RequestMethod.GET)
     public @ResponseBody
-    CVEntry getCVByID(@PathVariable int id) {
-        CVEntry cv = new CVEntry();
-
-        for (CVEntry cvEntry: cvList.getListCV()) {
-            if (cvEntry.getId() == id) {
-                cv = cvEntry;
-                break;
-            }
-        }
-        return cv;
+    CV getCVByID(@PathVariable int id) {
+        return repository.get(""+id);
     }
 
     /**
-     * reçcoit un flux XML decrivant un CV, cree l'objet correspondant et retourne son nouvel identifiant au format XML
+     * recoit un flux XML decrivant un CV, cree l'objet correspondant et retourne son nouvel identifiant au format XML
      * @param cv
      * @return
      */
     @RequestMapping(value="", method = RequestMethod.POST)
     public @ResponseBody
-    CVEntry getCVByPost(CVEntry cv) {
-        CVEntry cvEntry = new CVEntry(cv.getId(), cv.getFirstname(), cv.getName());
-        cvEntry.setId(cv.getId());
+    CV getCVByPost(CV cv) {
+        CV cvEntry = new CV(cv.getFirstname(), cv.getName());
         cvEntry.setFirstname(cv.getFirstname());
         cvEntry.setName(cv.getName());
-
+        cvEntry = repository.add(cvEntry);
         return cvEntry;
     }
 

@@ -6,17 +6,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "cv")
 public class CV {
 
+    String id;
     String name;
-    String firtname;
-    int age;
+    String firstname;
 
-    public String getFirtname() {
-        return firtname;
+    public CV() {
+        super();
+    }
+
+    public CV(String name, String firstname) {
+        this.id = null;
+        this.name = name;
+        this.firstname = firstname;
+    }
+
+    public String getFirstname() {
+        return firstname;
     }
 
     @XmlElement
-    public void setFirtname(String firtname) {
-        this.firtname = firtname;
+    public void setFirstname(String firtname) {
+        this.firstname = firtname;
     }
 
     public String getName() {
@@ -28,25 +38,12 @@ public class CV {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getId() {
+        return id;
     }
 
     @XmlElement
-    public void setAge(int age) {
-        this.age = age;
+    public void setId(String id) {
+        this.id = id;
     }
-
-    public CV(String name, String firtname, int age) {
-        this.name = name;
-        this.firtname = firtname;
-        this.age = age;
-    }
-
-    public CV() {
-        super();
-    }
-
-
-
 }
