@@ -2,6 +2,7 @@ package urouen.dao;
 
 import urouen.model.CV;
 import urouen.model.CV_Experience;
+import urouen.model.CV_Lang;
 import urouen.model.CV_School;
 
 import java.util.ArrayList;
@@ -18,8 +19,9 @@ public class CVDao {
     private List<CVDao_Experience> experiences = new ArrayList<>();
     private List<CVDao_School> schools = new ArrayList<>();
     private String skill;
+    private List<CVDao_Lang> langs = new ArrayList<>();
 
-    public CVDao(String id, String gender, CVDao_Name name, String firstName, String objective, List<CVDao_Experience> experiences, List<CVDao_School> schools, String skill) {
+    public CVDao(String id, String gender, CVDao_Name name, String firstName, String objective, List<CVDao_Experience> experiences, List<CVDao_School> schools, String skill, List<CVDao_Lang> langs) {
         this.id = id;
         this.gender = gender;
         this.name = name;
@@ -28,6 +30,7 @@ public class CVDao {
         this.experiences = experiences;
         this.schools = schools;
         this.skill = skill;
+        this.langs = langs;
     }
 
     public CVDao(CV cv) {
@@ -47,6 +50,11 @@ public class CVDao {
             this.schools.add(new CVDao_School(school));
         }
         this.skill = cv.getSkill();
+
+        this.langs = new ArrayList<>();
+        for (CV_Lang lang: cv.getLangues()) {
+            this.langs.add(new CVDao_Lang(lang));
+        }
     }
 
     public String getId() {
@@ -68,6 +76,11 @@ public class CVDao {
             schools.add(school.toCVSchool());
         }
 
+        List<CV_Lang> langs = new ArrayList<>();
+        for (CVDao_Lang lang: this.langs) {
+            langs.add(lang.toCVLang());
+        }
+
         return new CV(
                 this.id,
                 this.gender,
@@ -76,7 +89,8 @@ public class CVDao {
                 this.objective,
                 experiences,
                 schools,
-                this.skill
+                this.skill,
+                langs
         );
     }
 }
