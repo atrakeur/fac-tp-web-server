@@ -1,9 +1,6 @@
 package urouen.dao;
 
-import urouen.model.CV;
-import urouen.model.CV_Experience;
-import urouen.model.CV_Lang;
-import urouen.model.CV_School;
+import urouen.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +17,9 @@ public class CVDao {
     private List<CVDao_School> schools = new ArrayList<>();
     private String skill;
     private List<CVDao_Lang> langs = new ArrayList<>();
+    private List<CVDao_ComputerSkill> computerSkills = new ArrayList<>();
 
-    public CVDao(String id, String gender, CVDao_Name name, String firstName, String objective, List<CVDao_Experience> experiences, List<CVDao_School> schools, String skill, List<CVDao_Lang> langs) {
+    public CVDao(String id, String gender, CVDao_Name name, String firstName, String objective, List<CVDao_Experience> experiences, List<CVDao_School> schools, String skill, List<CVDao_Lang> langs, List<CVDao_ComputerSkill> computerSkills) {
         this.id = id;
         this.gender = gender;
         this.name = name;
@@ -31,6 +29,7 @@ public class CVDao {
         this.schools = schools;
         this.skill = skill;
         this.langs = langs;
+        this.computerSkills = computerSkills;
     }
 
     public CVDao(CV cv) {
@@ -54,6 +53,11 @@ public class CVDao {
         this.langs = new ArrayList<>();
         for (CV_Lang lang: cv.getLangues()) {
             this.langs.add(new CVDao_Lang(lang));
+        }
+
+        this.computerSkills = new ArrayList<>();
+        for (CV_ComputerSkill skill: cv.getComputerSkill()) {
+            this.computerSkills.add(new CVDao_ComputerSkill(skill));
         }
     }
 
@@ -81,6 +85,11 @@ public class CVDao {
             langs.add(lang.toCVLang());
         }
 
+        List<CV_ComputerSkill> skills = new ArrayList<>();
+        for (CVDao_ComputerSkill skill: this.computerSkills) {
+            skills.add(skill.toCVComputerSkill());
+        }
+
         return new CV(
                 this.id,
                 this.gender,
@@ -90,7 +99,8 @@ public class CVDao {
                 experiences,
                 schools,
                 this.skill,
-                langs
+                langs,
+                skills
         );
     }
 }
