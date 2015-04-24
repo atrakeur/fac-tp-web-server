@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
+import java.util.List;
 
 @XmlRootElement(name = "cv")
 public class CV {
@@ -13,21 +14,20 @@ public class CV {
     private CV_Name name;
     private String firstname;
 
+    private String objective;
+    private List<CV_Experience> experiences;
+
     public CV() {
         super();
     }
 
-    public CV(CV_Name name, String firstname) {
-        this.id = null;
-        this.name = name;
-        this.firstname = firstname;
-    }
-
-    public CV(String id, String gender, CV_Name name, String firstname) {
+    public CV(String id, String gender, CV_Name name, String firstname, String objective, List<CV_Experience> experiences) {
         this.id = id;
         this.gender = gender;
         this.name = name;
         this.firstname = firstname;
+        this.objective = objective;
+        this.experiences = experiences;
     }
 
     public String getId() {
@@ -64,5 +64,23 @@ public class CV {
     @XmlElement
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getObjective() {
+        return objective;
+    }
+
+    @XmlElement
+    public void setObjective(String objective) {
+        this.objective = objective;
+    }
+
+    public List<CV_Experience> getExperiences() {
+        return experiences;
+    }
+
+    @XmlElement(name = "experience")
+    public void setExperiences(List<CV_Experience> experiences) {
+        this.experiences = experiences;
     }
 }
