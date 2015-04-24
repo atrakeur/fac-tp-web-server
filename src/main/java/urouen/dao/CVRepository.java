@@ -61,6 +61,33 @@ public class CVRepository {
         return null;
     }
 
+
+    public CV delete(String hash) {
+        DBCollection collection = null;
+        DBCursor cursor = null;
+        try {
+            collection = getDatabase();
+            BasicDBObject query = new BasicDBObject();
+            query.put("_id", new ObjectId(hash));
+            cursor = collection.find(query);
+
+            while (cursor.hasNext()) {
+                DBObject retrieved = cursor.next();
+                CVDao cvDao = new Gson().fromJson(retrieved.toString(), CVDao.class);
+                cvDao.setId(retrieved.get("_id").toString());
+                collection.remove(retrieved);
+                return cvDao.toCV();
+            }
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } finally {
+            cursor.close();
+        }
+
+        return null;
+    }
+
     public CV add(CV cvEntry) {
         DBCollection collection = null;
         try {
@@ -102,5 +129,4 @@ public class CVRepository {
 
         return db.getCollection("cv");
     }
-
 }

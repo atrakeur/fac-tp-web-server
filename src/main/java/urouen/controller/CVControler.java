@@ -34,6 +34,17 @@ public class CVControler {
     }
 
     /**
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value="{id}", method = RequestMethod.DELETE)
+    public @ResponseBody
+    CV deleteByID(@PathVariable String id) {
+        return repository.delete(id);
+    }
+
+    /**
      * recoit un flux XML decrivant un CV, cree l'objet correspondant et retourne son nouvel identifiant au format XML
      * @param cv
      * @return
