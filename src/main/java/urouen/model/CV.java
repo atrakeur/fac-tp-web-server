@@ -1,26 +1,28 @@
 package urouen.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlValue;
 
 @XmlRootElement(name = "cv")
 public class CV {
 
     String id;
-    String name;
+    CV_Name name;
     String firstname;
 
     public CV() {
         super();
     }
 
-    public CV(String name, String firstname) {
+    public CV(CV_Name name, String firstname) {
         this.id = null;
         this.name = name;
         this.firstname = firstname;
     }
 
-    public CV(String id, String name, String firstname) {
+    public CV(String id, CV_Name name, String firstname) {
         this.id = id;
         this.name = name;
         this.firstname = firstname;
@@ -44,12 +46,13 @@ public class CV {
         this.firstname = firtname;
     }
 
-    public String getName() {
+    public CV_Name getName() {
         return name;
     }
 
     @XmlElement
-    public void setName(String name) {
+    public void setName(CV_Name name) {
         this.name = name;
     }
+
 }

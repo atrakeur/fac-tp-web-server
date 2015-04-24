@@ -2,15 +2,13 @@ package urouen.dao;
 
 import urouen.model.CV;
 
-import java.io.Serializable;
-
 public class CVDao {
 
     private String id;
-    private String name;
+    private CVDao_Name name;
     private String firstName;
 
-    public CVDao(String id, String name, String firstName) {
+    public CVDao(String id, CVDao_Name name, String firstName) {
         this.id = id;
         this.name = name;
         this.firstName = firstName;
@@ -18,7 +16,7 @@ public class CVDao {
 
     public CVDao(CV cv) {
         this.id = cv.getId();
-        this.name = cv.getName();
+        this.name = new CVDao_Name(cv.getName());
         this.firstName = cv.getFirstname();
     }
 
@@ -30,11 +28,11 @@ public class CVDao {
         this.id = id;
     }
 
-    public String getName() {
+    public CVDao_Name getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(CVDao_Name name) {
         this.name = name;
     }
 
@@ -47,6 +45,7 @@ public class CVDao {
     }
 
     public CV toCV() {
-        return new CV(this.id, this.name, this.firstName);
+        return new CV(this.id, this.name.toCVName(), this.firstName);
     }
+
 }
