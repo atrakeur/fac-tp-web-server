@@ -1,13 +1,11 @@
 package urouen.model;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "cv")
+@XmlType(propOrder={"id", "gender", "name", "firstname", "objective", "experiences", "schools", "skill", "langues", "computerSkill"})
 public class CV {
 
     private String id;
@@ -54,9 +52,9 @@ public class CV {
         return firstname;
     }
 
-    @XmlElement
-    public void setFirstname(String firtname) {
-        this.firstname = firtname;
+    @XmlElement(name="first_name")
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public CV_Name getName() {
