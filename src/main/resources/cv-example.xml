@@ -1,19 +1,19 @@
-<cv:cv xmlns:cv="http://CV.org">
-    <cv:gender>Mme</cv:gender>
-    <cv:name maidenName="true">Nom</cv:name>
-    <cv:first_name>Prenom</cv:first_name>
-    <cv:objective>Objectif</cv:objective>
+<cv xmlns:cv="http://CV.org">
+    <gender>Mme</gender>
+    <name maidenName="true">Nom</name>
+    <first_name>Prenom</first_name>
+    <objective>Objectif</objective>
     <!--1 or more repetitions:-->
-    <cv:experience begin="2013-11-23" end="2014-06-09">Exp 1</cv:experience>
-    <cv:experience begin="2014-06-09" >Exp 2</cv:experience>
+    <experience begin="2013-11-23" end="2014-06-09">Exp 1</experience>
+    <experience begin="2014-06-09" >Exp 2</experience>
     <!--1 or more repetitions:-->
-    <cv:school begin="2008-11-15" end="2017-05-15">Ecole 1</cv:school>
-    <cv:school begin="2007-11-15" end="2008-05-15">Ecole 2</cv:school>
-    <cv:school begin="2017-05-15" >Ecole 3</cv:school>
-    <cv:skill>Competence</cv:skill>
+    <school begin="2008-11-15" end="2017-05-15">Ecole 1</school>
+    <school begin="2007-11-15" end="2008-05-15">Ecole 2</school>
+    <school begin="2017-05-15" >Ecole 3</school>
+    <skill>Competence</skill>
     <!--1 or more repetitions:-->
-    <cv:language name="anglais" level="20" description="lu, parle, ecrit"/>
-    <cv:language name="allemand" level="10"/>
+    <language name="anglais" level="20" description="lu, parle, ecrit"/>
+    <language name="allemand" level="10"/>
     <!--1 or more repetitions:-->
-    <cv:computer_sciences_skill name="java" level="20"/>
-</cv:cv>
+    <computer_sciences_skill name="java" level="20"/>
+</cv>
