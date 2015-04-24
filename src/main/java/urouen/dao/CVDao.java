@@ -17,8 +17,9 @@ public class CVDao {
     private String objective;
     private List<CVDao_Experience> experiences = new ArrayList<>();
     private List<CVDao_School> schools = new ArrayList<>();
+    private String skill;
 
-    public CVDao(String id, String gender, CVDao_Name name, String firstName, String objective, List<CVDao_Experience> experiences, List<CVDao_School> schools) {
+    public CVDao(String id, String gender, CVDao_Name name, String firstName, String objective, List<CVDao_Experience> experiences, List<CVDao_School> schools, String skill) {
         this.id = id;
         this.gender = gender;
         this.name = name;
@@ -26,6 +27,7 @@ public class CVDao {
         this.objective = objective;
         this.experiences = experiences;
         this.schools = schools;
+        this.skill = skill;
     }
 
     public CVDao(CV cv) {
@@ -44,6 +46,7 @@ public class CVDao {
         for (CV_School school: cv.getSchools()) {
             this.schools.add(new CVDao_School(school));
         }
+        this.skill = cv.getSkill();
     }
 
     public String getId() {
@@ -52,22 +55,6 @@ public class CVDao {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public CVDao_Name getName() {
-        return name;
-    }
-
-    public void setName(CVDao_Name name) {
-        this.name = name;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public CV toCV() {
@@ -88,15 +75,8 @@ public class CVDao {
                 this.firstName,
                 this.objective,
                 experiences,
-                schools
+                schools,
+                this.skill
         );
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 }

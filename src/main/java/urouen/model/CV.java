@@ -19,11 +19,13 @@ public class CV {
     private List<CV_Experience> experiences = new ArrayList<>();
     private List<CV_School> schools = new ArrayList<>();
 
+    private String skill;
+
     public CV() {
         super();
     }
 
-    public CV(String id, String gender, CV_Name name, String firstname, String objective, List<CV_Experience> experiences, List<CV_School> schools) {
+    public CV(String id, String gender, CV_Name name, String firstname, String objective, List<CV_Experience> experiences, List<CV_School> schools, String skill) {
         this.id = id;
         this.gender = gender;
         this.name = name;
@@ -31,6 +33,7 @@ public class CV {
         this.objective = objective;
         this.experiences = experiences;
         this.schools = schools;
+        this.skill = skill;
     }
 
     public String getId() {
@@ -94,5 +97,14 @@ public class CV {
     @XmlElement(name = "school")
     public void setSchools(List<CV_School> schools) {
         this.schools = schools;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    @XmlElement
+    public void setSkill(String skill) {
+        this.skill = skill;
     }
 }
