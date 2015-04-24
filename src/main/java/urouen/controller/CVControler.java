@@ -1,10 +1,7 @@
 package urouen.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import urouen.dao.CVRepository;
 import urouen.model.CV;
 import urouen.model.CVList;
@@ -43,10 +40,12 @@ public class CVControler {
      */
     @RequestMapping(value="", method = RequestMethod.POST)
     public @ResponseBody
-    CV getCVByPost(CV cv) {
-        CV cvEntry = new CV(cv.getFirstname(), cv.getName());
+    CV getCVByPost(@RequestBody CV cv) {
+        CV cvEntry = new CV();
+
         cvEntry.setFirstname(cv.getFirstname());
         cvEntry.setName(cv.getName());
+
         cvEntry = repository.add(cvEntry);
         return cvEntry;
     }

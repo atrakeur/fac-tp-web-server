@@ -66,7 +66,7 @@ public class CVRepository {
             CVDao cvDao = new CVDao(cvEntry);
             DBObject dbObject = (DBObject) JSON.parse(new Gson().toJson(cvDao));
             WriteResult retVal = collection.insert(dbObject);
-            cvEntry.setId(retVal.getUpsertedId().toString());
+            //cvEntry.setId(retVal.getUpsertedId().toString());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

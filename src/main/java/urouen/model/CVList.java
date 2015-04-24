@@ -18,7 +18,7 @@ public class CVList {
         return listCV;
     }
 
-    @XmlElement
+    @XmlElement(name = "cv")
     public void setListCV(List<CV> listCV) {
         this.listCV = listCV;
     }
