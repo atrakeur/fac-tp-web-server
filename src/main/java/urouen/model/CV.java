@@ -8,9 +8,10 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlRootElement(name = "cv")
 public class CV {
 
-    String id;
-    CV_Name name;
-    String firstname;
+    private String id;
+    private String gender;
+    private CV_Name name;
+    private String firstname;
 
     public CV() {
         super();
@@ -22,8 +23,9 @@ public class CV {
         this.firstname = firstname;
     }
 
-    public CV(String id, CV_Name name, String firstname) {
+    public CV(String id, String gender, CV_Name name, String firstname) {
         this.id = id;
+        this.gender = gender;
         this.name = name;
         this.firstname = firstname;
     }
@@ -55,4 +57,12 @@ public class CV {
         this.name = name;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    @XmlElement
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }
