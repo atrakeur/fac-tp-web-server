@@ -47,6 +47,6 @@ public class CVDao {
     }
 
     public CV toCV() {
-        return new CV(this.name, this.firstName);
+        return new CV(this.id, this.name, this.firstName);
     }
 }

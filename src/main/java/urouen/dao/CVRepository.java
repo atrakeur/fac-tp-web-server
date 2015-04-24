@@ -3,6 +3,7 @@ package urouen.dao;
 import com.google.gson.Gson;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
+import org.bson.types.ObjectId;
 import urouen.model.CV;
 import urouen.model.CVList;
 
@@ -40,7 +41,8 @@ public class CVRepository {
         DBCursor cursor = null;
         try {
             collection = getDatabase();
-            BasicDBObject query = new BasicDBObject("_id", hash);
+            BasicDBObject query = new BasicDBObject();
+            query.put("_id", new ObjectId(hash));
             cursor = collection.find(query);
 
             while (cursor.hasNext()) {
@@ -65,8 +67,8 @@ public class CVRepository {
             collection = getDatabase();
             CVDao cvDao = new CVDao(cvEntry);
             DBObject dbObject = (DBObject) JSON.parse(new Gson().toJson(cvDao));
-            WriteResult retVal = collection.insert(dbObject);
-            //cvEntry.setId(retVal.getUpsertedId().toString());
+            collection.insert(dbObject);
+            cvEntry.setId(dbObject.get("_id").toString());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -84,7 +86,7 @@ public class CVRepository {
         String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
         String port = System.getenv("OPENSHIFT_MONGODB_DB_PORT");
         String username = "admin";
-        String password = "GBWyuxW2Atp3";
+        String password = System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD");
 
         MongoCredential credential = MongoCredential.createCredential(username, "cv", password.toCharArray());
 

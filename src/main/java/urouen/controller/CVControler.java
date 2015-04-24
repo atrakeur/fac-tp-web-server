@@ -29,8 +29,8 @@ public class CVControler {
      */
     @RequestMapping(value="{id}", method = RequestMethod.GET)
     public @ResponseBody
-    CV getCVByID(@PathVariable int id) {
-        return repository.get(""+id);
+    CV getCVByID(@PathVariable String id) {
+        return repository.get(id);
     }
 
     /**

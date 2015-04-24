@@ -20,6 +20,21 @@ public class CV {
         this.firstname = firstname;
     }
 
+    public CV(String id, String name, String firstname) {
+        this.id = id;
+        this.name = name;
+        this.firstname = firstname;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    @XmlElement
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getFirstname() {
         return firstname;
     }
@@ -36,14 +51,5 @@ public class CV {
     @XmlElement
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    @XmlElement
-    public void setId(String id) {
-        this.id = id;
     }
 }
