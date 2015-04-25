@@ -1,6 +1,6 @@
-package urouen.dao;
+package com.atrakeur.web.restserver.dao;
 
-import urouen.model.CV_Name;
+import com.atrakeur.web.restserver.model.CV_Name;
 
 public class CVDao_Name {
 

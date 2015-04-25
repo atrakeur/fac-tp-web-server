@@ -1,4 +1,4 @@
-package urouen.model;
+package com.atrakeur.web.restserver.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
 

@@ -1,6 +1,6 @@
-package urouen.dao;
+package com.atrakeur.web.restserver.dao;
 
-import urouen.model.CV_Lang;
+import com.atrakeur.web.restserver.model.CV_Lang;
 
 public class CVDao_Lang {
 

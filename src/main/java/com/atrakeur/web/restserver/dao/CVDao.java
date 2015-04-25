@@ -1,6 +1,6 @@
-package urouen.dao;
+package com.atrakeur.web.restserver.dao;
 
-import urouen.model.*;
+import com.atrakeur.web.restserver.model.*;
 
 import java.util.ArrayList;
 import java.util.List;

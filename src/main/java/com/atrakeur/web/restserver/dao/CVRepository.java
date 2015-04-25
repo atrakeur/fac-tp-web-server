@@ -1,11 +1,11 @@
-package urouen.dao;
+package com.atrakeur.web.restserver.dao;
 
 import com.google.gson.Gson;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
 import org.bson.types.ObjectId;
-import urouen.model.CV;
-import urouen.model.CVList;
+import com.atrakeur.web.restserver.model.CV;
+import com.atrakeur.web.restserver.model.CVList;
 
 import java.net.UnknownHostException;
 import java.util.Arrays;

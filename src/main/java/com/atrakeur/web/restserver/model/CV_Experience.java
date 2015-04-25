@@ -1,12 +1,12 @@
-package urouen.model;
+package com.atrakeur.web.restserver.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 import java.util.Date;
 
-@XmlRootElement(name = "school")
-public class CV_School {
+@XmlRootElement(name = "experience")
+public class CV_Experience {
 
     private String text;
 
@@ -14,10 +14,10 @@ public class CV_School {
 
     private Date end;
 
-    public CV_School() {
+    public CV_Experience() {
     }
 
-    public CV_School(String text, Date begin, Date end) {
+    public CV_Experience(String text, Date begin, Date end) {
         this.text  = text;
         this.begin = begin;
         this.end   = end;
@@ -49,6 +49,4 @@ public class CV_School {
     public void setEnd(Date end) {
         this.end = end;
     }
-
-
 }

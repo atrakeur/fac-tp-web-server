@@ -1,17 +1,15 @@
-package urouen.dao;
+package com.atrakeur.web.restserver.dao;
 
-import urouen.model.CV_Experience;
-import urouen.model.CV_School;
+import com.atrakeur.web.restserver.model.CV_Experience;
 
 import java.util.Date;
 
-public class CVDao_School {
-
+public class CVDao_Experience {
     private String text;
     private Date begin;
     private Date end;
 
-    public CVDao_School(CV_School exp) {
+    public CVDao_Experience(CV_Experience exp) {
         this.text = exp.getText();
         this.begin = exp.getBegin();
         this.end = exp.getEnd();
@@ -41,8 +39,7 @@ public class CVDao_School {
         this.end = end;
     }
 
-    public CV_School toCVSchool() {
-        return new CV_School(this.text, this.begin, this.end);
+    public CV_Experience toCVExperience() {
+        return new CV_Experience(this.text, this.begin, this.end);
     }
-
 }

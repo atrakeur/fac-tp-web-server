@@ -1,10 +1,10 @@
-package urouen.controller;
+package com.atrakeur.web.restserver.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import urouen.dao.CVRepository;
-import urouen.model.CV;
-import urouen.model.CVList;
+import com.atrakeur.web.restserver.dao.CVRepository;
+import com.atrakeur.web.restserver.model.CV;
+import com.atrakeur.web.restserver.model.CVList;
 
 @Controller
 @RequestMapping("/resume")

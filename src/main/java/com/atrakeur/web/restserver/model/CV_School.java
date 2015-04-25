@@ -1,24 +1,33 @@
-package urouen.dao;
+package com.atrakeur.web.restserver.model;
 
-import urouen.model.CV_Experience;
-
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlValue;
 import java.util.Date;
 
-public class CVDao_Experience {
+@XmlRootElement(name = "school")
+public class CV_School {
+
     private String text;
+
     private Date begin;
+
     private Date end;
 
-    public CVDao_Experience(CV_Experience exp) {
-        this.text = exp.getText();
-        this.begin = exp.getBegin();
-        this.end = exp.getEnd();
+    public CV_School() {
+    }
+
+    public CV_School(String text, Date begin, Date end) {
+        this.text  = text;
+        this.begin = begin;
+        this.end   = end;
     }
 
     public String getText() {
         return text;
     }
 
+    @XmlValue
     public void setText(String text) {
         this.text = text;
     }
@@ -27,6 +36,7 @@ public class CVDao_Experience {
         return begin;
     }
 
+    @XmlAttribute
     public void setBegin(Date begin) {
         this.begin = begin;
     }
@@ -35,11 +45,10 @@ public class CVDao_Experience {
         return end;
     }
 
+    @XmlAttribute
     public void setEnd(Date end) {
         this.end = end;
     }
 
-    public CV_Experience toCVExperience() {
-        return new CV_Experience(this.text, this.begin, this.end);
-    }
+
 }
