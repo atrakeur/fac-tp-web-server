@@ -1,5 +1,6 @@
 package com.atrakeur.web.restserver.dao;
 
+import com.atrakeur.web.restserver.db.MongoDB;
 import com.google.gson.Gson;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
@@ -16,8 +17,9 @@ public class CVRepository {
         CVList list = new CVList();
         DBCollection collection = null;
         DBCursor cursor = null;
+        MongoDB db = new MongoDB();
         try {
-            collection = getDatabase();
+            collection = db.getCollection("cv");
             cursor = collection.find();
 
             while (cursor.hasNext()) {
@@ -31,6 +33,7 @@ public class CVRepository {
             e.printStackTrace();
         } finally {
             cursor.close();
+            db.forceClose();
         }
 
         return list;
@@ -39,8 +42,9 @@ public class CVRepository {
     public CV get(String hash) {
         DBCollection collection = null;
         DBCursor cursor = null;
+        MongoDB db = new MongoDB();
         try {
-            collection = getDatabase();
+            collection = db.getCollection("cv");
             BasicDBObject query = new BasicDBObject();
             query.put("_id", new ObjectId(hash));
             cursor = collection.find(query);
@@ -56,6 +60,7 @@ public class CVRepository {
             e.printStackTrace();
         } finally {
             cursor.close();
+            db.forceClose();
         }
 
         return null;
@@ -65,8 +70,9 @@ public class CVRepository {
     public CV delete(String hash) {
         DBCollection collection = null;
         DBCursor cursor = null;
+        MongoDB db = new MongoDB();
         try {
-            collection = getDatabase();
+            collection = db.getCollection("cv");
             BasicDBObject query = new BasicDBObject();
             query.put("_id", new ObjectId(hash));
             cursor = collection.find(query);
@@ -83,6 +89,7 @@ public class CVRepository {
             e.printStackTrace();
         } finally {
             cursor.close();
+            db.forceClose();
         }
 
         return null;
@@ -90,43 +97,20 @@ public class CVRepository {
 
     public CV add(CV cvEntry) {
         DBCollection collection = null;
+        MongoDB db = new MongoDB();
         try {
-            collection = getDatabase();
+            collection = db.getCollection("cv");
             CVDao cvDao = new CVDao(cvEntry);
             DBObject dbObject = (DBObject) JSON.parse(new Gson().toJson(cvDao));
             collection.insert(dbObject);
             cvEntry.setId(dbObject.get("_id").toString());
         } catch (UnknownHostException e) {
             e.printStackTrace();
+        } finally {
+            db.forceClose();
         }
 
         return cvEntry;
     }
 
-    /**
-     * Retrieve MongoDB database collection
-     *
-     * @return the collection of the mongodb database
-     * @throws UnknownHostException when the database can't be found
-     */
-    private DBCollection getDatabase() throws UnknownHostException {
-        String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
-        String port = System.getenv("OPENSHIFT_MONGODB_DB_PORT");
-        String username = "admin";
-        String password = System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD");
-
-        MongoCredential credential = MongoCredential.createCredential(username, "cv", password.toCharArray());
-
-        MongoClient mongoClient = new MongoClient(
-                new ServerAddress(host, Integer.parseInt(port)),
-                Arrays.asList(credential)
-        );
-
-        DB db = mongoClient.getDB("cv");
-        if (!db.collectionExists("cv")) {
-            db.createCollection("cv", null);
-        }
-
-        return db.getCollection("cv");
-    }
 }
